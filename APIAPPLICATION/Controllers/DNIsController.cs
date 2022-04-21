@@ -21,6 +21,20 @@ namespace APIAPPLICATION.Controllers
             _context = context;
         }
 
+
+        [HttpGet("GetDniByNombre/{nombre}")]
+        public async Task<ActionResult<DNI>> GetDniByNombre(string nombre)
+        {
+            //return await _context.Motivos.ToListAsync();
+            //var usuario = _context.Usuarios.ToList();
+            var dni = await _context.DNIs.FirstOrDefaultAsync(u => u.Dni == nombre);
+            if (dni == null)
+            {
+                return NotFound(new { message = "El dni no existe" });
+            }
+            return dni;
+        }
+
         // GET: api/DNIs
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DNI>>> GetDNIs()
@@ -80,6 +94,23 @@ namespace APIAPPLICATION.Controllers
         [HttpPost]
         public async Task<ActionResult<DNI>> PostDNI(DNI dNI)
         {
+            var dnis = _context.DNIs.ToList();
+            bool flag = false;
+
+            foreach (DNI dni in dnis)
+            {
+                if (dni.Dni == dNI.Dni)
+                {
+                    flag = true;
+                }
+            }
+
+            if (flag)
+            {
+                return BadRequest(new { message = "El dni ya existe" });
+            }
+
+
             _context.DNIs.Add(dNI);
             await _context.SaveChangesAsync();
 

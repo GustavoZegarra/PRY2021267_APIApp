@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <parameters>
   <parameter name="IIS Web Application Name" description="" value="safetysat" tags="IisApp">
-    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPPLICATION\\APIAPPLICATION\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPP\\PRY2021267_APIApp\\APIAPPLICATION\\obj\\Release\\netcoreapp3\.1\\PubTmp\\Out\\$" />
   </parameter>
 </parameters>

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Ep5drERJAyszLufMpaBMKP17sSCFn6fZmB+T9WIIrl8gFGBshj8gpEX4NHeR2RgX6uai0TdlGNsgWRUeY7BX9Q==",
+  "dgSpecHash": "roJEWm9x8gWhlkZAGyZXflclmbcjieOGMGI9GKLiyRSaedPreSjtwi9GeeVJAr/cPmFINl0dDRsyq/vnwXxMOQ==",
   "success": true,
-  "projectFilePath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPPLICATION\\APIAPPLICATION\\APIAPPLICATION.csproj",
+  "projectFilePath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPP\\PRY2021267_APIApp\\APIAPPLICATION\\APIAPPLICATION.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\piero\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\piero\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

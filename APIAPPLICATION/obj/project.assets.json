@@ -8800,11 +8800,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPPLICATION\\APIAPPLICATION\\APIAPPLICATION.csproj",
+      "projectUniqueName": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPP\\PRY2021267_APIApp\\APIAPPLICATION\\APIAPPLICATION.csproj",
       "projectName": "APIAPPLICATION",
-      "projectPath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPPLICATION\\APIAPPLICATION\\APIAPPLICATION.csproj",
+      "projectPath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPP\\PRY2021267_APIApp\\APIAPPLICATION\\APIAPPLICATION.csproj",
       "packagesPath": "C:\\Users\\piero\\.nuget\\packages\\",
-      "outputPath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPPLICATION\\APIAPPLICATION\\obj\\",
+      "outputPath": "C:\\Universidad_UltimoCiclo\\TP2\\System_admin_api\\API_APPLICATION\\API3\\APIAPP\\PRY2021267_APIApp\\APIAPPLICATION\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\piero\\AppData\\Roaming\\NuGet\\NuGet.Config",
