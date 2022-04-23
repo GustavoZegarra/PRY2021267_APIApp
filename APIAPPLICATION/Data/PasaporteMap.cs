@@ -26,7 +26,7 @@ namespace Data
             //Relacion 1 a 1 con Pasaporte
             builder.HasOne(e => e.Usuario)
            .WithOne(e => e.Pasaporte)
-           .HasForeignKey<Usuario>(e => e.IdPasaporte)
+           .HasForeignKey<Usuario>(e => e.IdPasaporte).OnDelete(DeleteBehavior.Cascade)
            .HasConstraintName("FK_Usuario_Pasaporte");
         }
     }

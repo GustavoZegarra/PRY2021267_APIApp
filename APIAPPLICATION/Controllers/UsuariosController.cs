@@ -115,6 +115,7 @@ namespace APIAPPLICATION.Controllers
             _context.Usuarios.Add(usuario);
             await _context.SaveChangesAsync();
 
+
             return CreatedAtAction("GetUsuario", new { id = usuario.IdUsuario }, usuario);
         }
 

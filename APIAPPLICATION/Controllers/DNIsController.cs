@@ -53,7 +53,7 @@ namespace APIAPPLICATION.Controllers
                 return NotFound();
             }
 
-            return dNI;
+            return Ok(dNI);
         }
 
         // PUT: api/DNIs/5

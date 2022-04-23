@@ -33,7 +33,7 @@ namespace Data
             //Relacion 1 a 1 con DNI
             builder.HasOne(e => e.Usuario)
            .WithOne(e => e.DNI)
-           .HasForeignKey<Usuario>(e => e.IdDni)
+           .HasForeignKey<Usuario>(e => e.IdDni).OnDelete(DeleteBehavior.Cascade)
            .HasConstraintName("FK_Usuario_Dni");
         }
     }
