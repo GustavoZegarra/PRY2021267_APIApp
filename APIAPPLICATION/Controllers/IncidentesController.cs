@@ -21,11 +21,66 @@ namespace APIAPPLICATION.Controllers
             _context = context;
         }
 
+
+        //[HttpGet("GetIncidenteWithUsuario")]
+        //public async Task<ActionResult<IEnumerable<Incidente>>> GetIncidentesWithUsuario()
+        //{
+        //    var motivos = await (from incidente in _context.Incidentes
+        //                         join usuario in _context.Usuarios on incidente.IdUsuario equals usuario.IdUsuario
+        //                         join  
+        //                         orderby incidente.IdIncidente ascending
+
+        //                         select new Incidente
+        //                         {
+        //                             IdIncidente = incidente.IdIncidente,
+        //                             Descripcion=incidente.Descripcion,
+        //                             Imagen=incidente.Imagen,
+        //                             FechaRegistro=incidente.FechaRegistro,
+        //                             FechaActualizacion=incidente.FechaActualizacion,
+        //                             Resuelto=incidente.Resuelto,
+        //                             IdUsuario=incidente.IdUsuario,
+        //                             Usuario=usuario
+        //                         }
+
+        //      ).ToListAsync();
+        //    return motivos;
+        //}
+
+
         // GET: api/Incidentes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Incidente>>> GetIncidentes()
         {
-            return await _context.Incidentes.ToListAsync();
+            //return await _context.Incidentes.ToListAsync();
+            var incidentes = await (from incidente in _context.Incidentes
+                                 join usuario in _context.Usuarios on incidente.IdUsuario equals usuario.IdUsuario
+                                 join quebrada in _context.Quebradas on incidente.IdQuebrada equals quebrada.IdQuebrada
+                                 join motivo in _context.Motivos on incidente.IdMotivo equals motivo.IdMotivo
+                                 join coord in _context.GPSes on incidente.IdGPS equals coord.IdGps into pJoinData
+                                 from GpsNullable in pJoinData.DefaultIfEmpty()
+                                 orderby incidente.IdIncidente ascending
+
+                                 select new Incidente
+                                 {
+                                     IdIncidente = incidente.IdIncidente,
+                                     Descripcion = incidente.Descripcion,
+                                     Imagen = incidente.Imagen,
+                                     FechaRegistro = incidente.FechaRegistro,
+                                     FechaActualizacion = incidente.FechaActualizacion,
+                                     Resuelto = incidente.Resuelto,
+                                     IdUsuario = incidente.IdUsuario,
+                                     Usuario = usuario,
+                                     Quebrada= quebrada,
+                                     Motivo= motivo,
+                                     IdGPS=incidente.IdGPS,
+                                     IdMotivo=incidente.IdMotivo,
+                                     IdQuebrada=incidente.IdQuebrada,
+                                     GPS= GpsNullable != null ? GpsNullable : null
+
+                                 }
+
+                                           ).ToListAsync();
+            return incidentes;
         }
 
         // GET: api/Incidentes/5
@@ -40,6 +95,48 @@ namespace APIAPPLICATION.Controllers
             }
 
             return incidente;
+        }
+
+        [HttpGet("GetLastDays/{dias}")]
+        public async Task<ActionResult<IEnumerable<Incidente>>> GetIncidenteDias(int dias)
+        {
+            //var incidente = await _context.Incidentes.FindAsync(id);
+
+            //if (incidente == null)
+            //{
+            //    return NotFound();
+            //}
+
+            var incidentes = await (from incidente in _context.Incidentes
+                                    join usuario in _context.Usuarios on incidente.IdUsuario equals usuario.IdUsuario
+                                    join quebrada in _context.Quebradas on incidente.IdQuebrada equals quebrada.IdQuebrada
+                                    join motivo in _context.Motivos on incidente.IdMotivo equals motivo.IdMotivo
+                                    join coord in _context.GPSes on incidente.IdGPS equals coord.IdGps into pJoinData
+                                    from GpsNullable in pJoinData.DefaultIfEmpty()
+                                    where incidente.FechaRegistro >= DateTime.Now.AddDays(-dias)
+                                    orderby incidente.FechaRegistro ascending
+
+                                    select new Incidente
+                                    {
+                                        IdIncidente = incidente.IdIncidente,
+                                        Descripcion = incidente.Descripcion,
+                                        FechaRegistro = incidente.FechaRegistro,
+                                        FechaActualizacion = incidente.FechaActualizacion,
+                                        Resuelto = incidente.Resuelto,
+                                        IdUsuario = incidente.IdUsuario,
+                                        Usuario = usuario,
+                                        Quebrada = quebrada,
+                                        Motivo = motivo,
+                                        IdGPS = incidente.IdGPS,
+                                        IdMotivo = incidente.IdMotivo,
+                                        IdQuebrada = incidente.IdQuebrada,
+                                        GPS = GpsNullable != null ? GpsNullable : null
+
+                                    }
+
+                                          ).ToListAsync();
+            return incidentes;
+
         }
 
         // PUT: api/Incidentes/5
@@ -73,6 +170,33 @@ namespace APIAPPLICATION.Controllers
 
             return NoContent();
         }
+
+
+        [HttpPut("Update_Imagen/{id}")]
+        public async Task<ActionResult<Incidente>> PutAlertaField(int id, Incidente incidente)
+        {
+            if (id != incidente.IdIncidente)
+            {
+                return BadRequest();
+            }
+
+            var incident = await _context.Incidentes.FindAsync(incidente.IdIncidente);
+
+            if (incident == null)
+            {
+                // throw error,
+                return NotFound();
+            }
+
+            incident.Imagen = incidente.Imagen;
+            _context.Update(incident);
+            _context.SaveChanges();
+
+            return incident;
+        }
+
+
+
 
         // POST: api/Incidentes
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
